@@ -17,7 +17,7 @@ func idWordToChange(wordToChange string, txt []string) string {
 			}
 		}
 	}
-	if str == wordToChange {
+	if strings.ContainsAny(wordToChange, str) {
 
 		return strings.Join(num, " ")
 	}
