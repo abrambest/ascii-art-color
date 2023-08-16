@@ -54,7 +54,7 @@ func PrintAsciiArt(color *string, colorWord string, txt, alhpAscii []string) {
 
 	lineCharAscii := ""
 	mapNumWord := ""
-	tumbColor := false
+
 	fmt.Println("color word - ", len(colorWord))
 
 	if colorWord != "" {
@@ -82,17 +82,20 @@ func PrintAsciiArt(color *string, colorWord string, txt, alhpAscii []string) {
 
 				if mapNumWord != "" || colorWord == "" {
 
-					if strings.Contains(mapNumWord, fmt.Sprint(i)) || colorWord == "" {
+					if findIndexChar(mapNumWord, fmt.Sprint(i)) || colorWord == "" {
 
 						setColor = Colorize(color)
-						tumbColor = true
 
 						strCut := strings.Split(alhpAscii[s-32], "\n")
+
 						for _, ascii := range strCut[k] {
+
 							lineCharAscii += string(ascii)
 
 						}
+
 						str += string(setColor) + lineCharAscii + string(ColorReset)
+
 						lineCharAscii = ""
 
 					} else {
@@ -117,19 +120,10 @@ func PrintAsciiArt(color *string, colorWord string, txt, alhpAscii []string) {
 			}
 
 			if firstLine {
-				if tumbColor {
-					fmt.Println(len(str))
-					gtr := len(str) - 40
-					firstLine = false
-					fitConsole(gtr)
-				} else {
-					firstLine = false
-					fmt.Println(len(str))
-					fitConsole(len(str))
-				}
+				firstLine = false
 
+				fitConsole(len(word)*8 + 20)
 			}
-
 			fmt.Print(str)
 
 			fmt.Println()
@@ -137,6 +131,16 @@ func PrintAsciiArt(color *string, colorWord string, txt, alhpAscii []string) {
 
 	}
 
+}
+
+func findIndexChar(mapNumWord, i string) bool {
+	arr := strings.Split(mapNumWord, " ")
+	for _, n := range arr {
+		if n == i {
+			return true
+		}
+	}
+	return false
 }
 
 func CheckTxt(str string) error {
@@ -172,6 +176,8 @@ func fitConsole(s int) {
 	heightWidth := strings.Split(outStr, " ")
 	width, err := strconv.Atoi(heightWidth[1])
 	check("Error measuring console size:", err)
+
+	fmt.Println("S - ", s, "W - ", width)
 
 	if s > width {
 		fmt.Println("The input string doesn't fit into terminal.")
