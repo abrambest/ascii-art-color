@@ -17,13 +17,13 @@ func Start() (*string, string, string, error) {
 	if len(args) == 3 && strings.Contains(args[0], "--color=") {
 		colPtr := flag.String("color", "Black", "specify a color (options: Black, Red, Green, Yellow, Blue)")
 		flag.Parse()
-		fmt.Println("len 3")
+
 		return *&colPtr, args[1], args[2], nil
 	}
 	if len(args) == 2 && strings.Contains(args[0], "--color=") {
 		colPtr := flag.String("color", "Black", "specify a color (options: Black, Red, Green, Yellow, Blue)")
 		flag.Parse()
-		fmt.Println("len 2")
+
 		return *&colPtr, "", args[1], nil
 	}
 	return nil, "", "", errors.New("Usage: go run . [OPTION] [STRING]\n\nEX: go run . --color=<color> <letters to be colored> \"something\"")
@@ -56,7 +56,7 @@ func PrintAsciiArt(color *string, colorWord string, txt, alhpAscii []string) {
 
 	lineCharAscii := ""
 	mapNumWord := ""
-
+	setColor = Colorize(color)
 	if colorWord != "" {
 
 		mapNumWord = idWordToChange(colorWord, txt)
@@ -83,8 +83,6 @@ func PrintAsciiArt(color *string, colorWord string, txt, alhpAscii []string) {
 				if mapNumWord != "" || colorWord == "" {
 
 					if findIndexChar(mapNumWord, fmt.Sprint(i)) || colorWord == "" {
-
-						setColor = Colorize(color)
 
 						strCut := strings.Split(alhpAscii[s-32], "\n")
 
