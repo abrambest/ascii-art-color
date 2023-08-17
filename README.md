@@ -1,22 +1,22 @@
-## ascii-art
+## ascii-art-color
 
 ### Objectives
 
-- Ascii-art is a program which consists in receiving a `string` as an argument and outputting the `string` in a graphic representation using ASCII.
+- Ascii-art-color is a program which consists in receiving a `string` as an argument and outputting the `string` in a graphic representation using ASCIIб you can manipulate the color.
 
 - What we mean by a graphic representation using ASCII, is to write the string received using ASCII characters, as you can see in the example below:
 
 ```console
 
- _    _          _   _          $
-| |  | |        | | | |         $
-| |__| |   ___  | | | |   ___   $
-|  __  |  / _ \ | | | |  / _ \  $
-| |  | | |  __/ | | | | | (_) | $
-|_|  |_|  \___| |_| |_|  \___/  $
-                                $
-                                $
+ _    _          _   _          
+| |  | |        | | | |         
+| |__| |   ___  | | | |   ___   
+|  __  |  / _ \ | | | |  / _ \  
+| |  | | |  __/ | | | | | (_) | 
+|_|  |_|  \___| |_| |_|  \___/  
+
 ```
+
 
 ### Instructions
 
