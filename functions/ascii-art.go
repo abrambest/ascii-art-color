@@ -14,14 +14,16 @@ func Start() (*string, string, string, error) {
 
 	args := os.Args[1:]
 
-	if len(args) == 3 {
+	if len(args) == 3 && strings.Contains(args[0], "--color=") {
 		colPtr := flag.String("color", "Black", "specify a color (options: Black, Red, Green, Yellow, Blue)")
 		flag.Parse()
+		fmt.Println("len 3")
 		return *&colPtr, args[1], args[2], nil
 	}
-	if len(args) == 2 {
+	if len(args) == 2 && strings.Contains(args[0], "--color=") {
 		colPtr := flag.String("color", "Black", "specify a color (options: Black, Red, Green, Yellow, Blue)")
 		flag.Parse()
+		fmt.Println("len 2")
 		return *&colPtr, "", args[1], nil
 	}
 	return nil, "", "", errors.New("Usage: go run . [OPTION] [STRING]\n\nEX: go run . --color=<color> <letters to be colored> \"something\"")
@@ -54,8 +56,6 @@ func PrintAsciiArt(color *string, colorWord string, txt, alhpAscii []string) {
 
 	lineCharAscii := ""
 	mapNumWord := ""
-
-	fmt.Println("color word - ", len(colorWord))
 
 	if colorWord != "" {
 
@@ -176,8 +176,6 @@ func fitConsole(s int) {
 	heightWidth := strings.Split(outStr, " ")
 	width, err := strconv.Atoi(heightWidth[1])
 	check("Error measuring console size:", err)
-
-	fmt.Println("S - ", s, "W - ", width)
 
 	if s > width {
 		fmt.Println("The input string doesn't fit into terminal.")

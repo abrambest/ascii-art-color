@@ -6,8 +6,10 @@ import (
 )
 
 func idWordToChange(wordToChange string, txt []string) string {
+
 	str := ""
 	var num []string
+
 	for _, v := range txt {
 		for i, j := range v {
 			if have(string(j), wordToChange) {
